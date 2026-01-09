@@ -3,7 +3,7 @@ import Title from '../../components/common/Title'
 import CartTotal from '../../components/ui/CartTotal'
 import { assets } from '../../assets/images/assets'
 import { ShopContext } from '../../store/ShopContext'
-import axios from 'axios'
+import axios from '../../api/axiosInstance'
 import { toast } from 'react-toastify'
 
 const PlaceOrder = () => {
@@ -68,7 +68,16 @@ const PlaceOrder = () => {
             if (itemInfo) {
               itemInfo.size = item
               itemInfo.quantity = cartItems[items][item]
-              orderItems.push(itemInfo)
+
+              // Push only schema-compliant data
+              orderItems.push({
+                productId: itemInfo._id,
+                name: itemInfo.name,
+                price: itemInfo.price,
+                quantity: itemInfo.quantity,
+                size: itemInfo.size,
+                image: itemInfo.image
+              })
             }
           }
         }
@@ -85,7 +94,7 @@ const PlaceOrder = () => {
 
         // API Calls for COD
         case 'cod':
-          const response = await axios.post(backendUrl + '/api/order/place', orderData, { headers: { token } })
+          const response = await axios.post('/api/order/place', orderData)
           if (response.data.success) {
             setCartItems({})
             navigate('/orders')
@@ -95,7 +104,7 @@ const PlaceOrder = () => {
           break;
 
         case 'stripe':
-          const responseStripe = await axios.post(backendUrl + '/api/order/stripe', orderData, { headers: { token } })
+          const responseStripe = await axios.post('/api/order/stripe', orderData)
           if (responseStripe.data.success) {
             const { session_url } = responseStripe.data.data
             window.location.replace(session_url)
@@ -105,7 +114,7 @@ const PlaceOrder = () => {
           break;
 
         case 'razorpay':
-          const responseRazorpay = await axios.post(backendUrl + '/api/order/razorpay', orderData, { headers: { token } })
+          const responseRazorpay = await axios.post('/api/order/razorpay', orderData)
           if (responseRazorpay.data.success) {
             initPay(responseRazorpay.data.data);
           }

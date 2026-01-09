@@ -20,7 +20,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-10 flex-1">
           {/* Logo */}
-          <Link to="/Home" className="flex flex-col items-center">
+          <Link to="/" className="flex flex-col items-center">
             <img src={assets.logo} className="w-16 md:w-20 brightness-200" alt="Logo" />
             <p className="text-[11px] text-white italic -mt-1 flex items-center gap-0.5">Explore <span className="text-yellow-400 font-bold">Plus</span><img src={assets.star_icon} className="w-2.5" alt="" /></p>
           </Link>
@@ -87,10 +87,10 @@ const Navbar = () => {
           <img onClick={() => setVisible(false)} src={assets.cross_icon} className="w-6 cursor-pointer invert opacity-60" alt="Close" />
         </div>
         <div className="flex flex-col text-gray-700">
-          <NavLink to="/Home" onClick={() => setVisible(false)} className="p-4 border-b flex items-center gap-3"><img src={assets.logo} className="w-5 grayscale" alt="" /> Home</NavLink>
-          <NavLink to="/Collection" onClick={() => setVisible(false)} className="p-4 border-b flex items-center gap-3"><img src={assets.menu_icon} className="w-5 grayscale" alt="" /> Super Coin Zone</NavLink>
-          <NavLink to="/Orders" onClick={() => setVisible(false)} className="p-4 border-b flex items-center gap-3"><img src={assets.bag_icon} className="w-5 grayscale" alt="" /> My Orders</NavLink>
-          <NavLink to="/Contact" onClick={() => setVisible(false)} className="p-4 border-b flex items-center gap-3"><img src={assets.support_img} className="w-5 grayscale" alt="" /> Contact Us</NavLink>
+          <NavLink to="/" onClick={() => setVisible(false)} className="p-4 border-b flex items-center gap-3"><img src={assets.logo} className="w-5 grayscale" alt="" /> Home</NavLink>
+          <NavLink to="/collection" onClick={() => setVisible(false)} className="p-4 border-b flex items-center gap-3"><img src={assets.menu_icon} className="w-5 grayscale" alt="" /> Super Coin Zone</NavLink>
+          <NavLink to="/orders" onClick={() => setVisible(false)} className="p-4 border-b flex items-center gap-3"><img src={assets.bag_icon} className="w-5 grayscale" alt="" /> My Orders</NavLink>
+          <NavLink to="/contact" onClick={() => setVisible(false)} className="p-4 border-b flex items-center gap-3"><img src={assets.support_img} className="w-5 grayscale" alt="" /> Contact Us</NavLink>
         </div>
       </div>
 

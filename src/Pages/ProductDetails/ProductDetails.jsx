@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { ShopContext } from "../../store/ShopContext";
 import { assets } from "../../assets/images/assets";
 import RelatedProducts from "../../components/ui/RelatedProducts";
+import axios from '../../api/axiosInstance';
 
 const Product = () => {
 
@@ -22,7 +23,7 @@ const Product = () => {
     } else {
       // If not in context, fetch from API
       try {
-        const response = await axios.post(backendUrl + '/api/product/single', { productId });
+        const response = await axios.post('/api/product/single', { productId });
         if (response.data.success) {
           const product = response.data.data.product;
           setProductData(product);

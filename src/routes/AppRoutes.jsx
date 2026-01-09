@@ -12,23 +12,38 @@ import Orders from '../pages/Orders/Order';
 import Verify from '../pages/Orders/Verify';
 import ForgotPassword from '../pages/Auth/ForgotPassword';
 import ResetPassword from '../pages/Auth/ResetPassword';
+import AdminLayout from '../pages/Admin/AdminLayout';
+import AddProduct from '../pages/Admin/AddProduct';
+import ListOrders from '../pages/Admin/ListOrders';
+import Dashboard from '../pages/Admin/Dashboard';
+import ListProducts from '../pages/Admin/ListProducts';
+import Users from '../pages/Admin/Users';
 
 const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Home" element={<Home />} />
-            <Route path="/Collection" element={<Collection />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/collection" element={<Collection />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/About" element={<About />} />
+            <Route path="/about" element={<About />} />
             <Route path="/product/:productId" element={<ProductDetails />} />
-            <Route path="/placeOrder" element={<PlaceOrder />} />
-            <Route path="/Contact" element={<Contact />} />
+            <Route path="/place-order" element={<PlaceOrder />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="add" element={<AddProduct />} />
+                <Route path="list" element={<ListProducts />} />
+                <Route path="orders" element={<ListOrders />} />
+                <Route path="users" element={<Users />} />
+            </Route>
         </Routes>
     );
 };

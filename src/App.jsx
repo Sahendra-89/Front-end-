@@ -10,17 +10,21 @@ import "./assets/styles/global.css";
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useLocation } from "react-router-dom";
 
 const App = () => {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <ToastContainer />
-      <Header />
-      <MegaMenu />
+      {!isAdmin && <Header />}
+      {!isAdmin && <MegaMenu />}
       <div className="px-4 md:px-[2vw] lg:px-[4vw]">
-        <SearchBar />
+        {!isAdmin && <SearchBar />}
         <AppRoutes />
-        <Footer />
+        {!isAdmin && <Footer />}
       </div>
     </div>
   );

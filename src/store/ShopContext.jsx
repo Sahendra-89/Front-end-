@@ -43,9 +43,16 @@ const ShopContextProvider = (props) => {
     if (token) {
       try {
         const response = await axios.post('/api/cart/add', { itemId, size })
+        if (response.data.success) {
+          toast.success("Item added to cart!");
+        }
       } catch (error) {
         console.log(error)
-        toast.error(error.message)
+        if (error.message === 'Network Error') {
+          toast.error('Unable to connect to server. Is the Backend running?')
+        } else {
+          toast.error(error.message)
+        }
       }
     }
 
@@ -80,7 +87,11 @@ const ShopContextProvider = (props) => {
         await axios.post('/api/cart/update', { itemId, size, quantity })
       } catch (error) {
         console.log(error)
-        toast.error(error.message)
+        if (error.message === 'Network Error') {
+          toast.error('Unable to connect to server. Is the Backend running?')
+        } else {
+          toast.error(error.message)
+        }
       }
     }
 
@@ -119,7 +130,11 @@ const ShopContextProvider = (props) => {
       }
     } catch (error) {
       console.log(error)
-      toast.error(error.message)
+      if (error.message === 'Network Error') {
+        toast.error('Unable to connect to server. Is the Backend running?')
+      } else {
+        toast.error(error.message)
+      }
     }
   }
 
@@ -132,7 +147,11 @@ const ShopContextProvider = (props) => {
       }
     } catch (error) {
       console.log(error)
-      toast.error(error.message)
+      if (error.message === 'Network Error') {
+        toast.error('Unable to connect to server. Is the Backend running?')
+      } else {
+        toast.error(error.message)
+      }
     }
   }
 
